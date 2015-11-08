@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <% @closets.each do |closet| %>
+  <div class="container">
+  <div class="col-md-6">
+    <div class="panel-header">
+    <h1><%= link_to closet.thing, closet %></h1>
+    </div>
+    <div class="panel-body">
+    <p><%= image_tag closet.avatar.url(:medium) %></p>
+    <p> Submitted by: <strong><%= link_to closet.user.username, user_closet_path(id: closet.user.id) %></strong></p>
+    <p>
+    <% if current_user.id == closet.user.id %>
+    <%= link_to 'Edit', edit_closet_path(closet) %> |
+    <%= link_to 'Destroy', closet, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+    </p>
+  </div>
+  </div>
+  </div>
+  <% end %>
+</div>

@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+<div class="panel-body">
+  <p><h1><%= @closet.thing %></h1></p>
+  <p><%= image_tag @closet.avatar.url(:medium) %></p>
+  <p>Submitted by: <strong><%= link_to @closet.user.username, user_closet_path(id: @closet.user.id) %></strong></p>
+</div>
+
+<div class="panel panel-success">
+  <div class= "panel-heading">
+    Let us know what you think!
+  </div>
+  <div class="panel-body">
+  <%= render 'comments/form' %>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-header">
+    <h4>Comments</h4>
+  </div>
+  <% @closet.comments.each do |comment| %>
+  <div class="panel-body">
+    <p>By: <strong><%= link_to comment.user.username, user_closet_path(id: comment.user.id) %></strong></p>
+    <p>Rating: <%= comment.rating %></p>  
+  </div>
+  <% end %>
+</div>
+<% if current_user.id == @closet.user.id %>
+    <p>
+    <div class="panel-footer">
+    <%= link_to 'Edit', edit_closet_path(@closet), class: "btn btn-warning" %>
+    <%= link_to 'Destroy', @closet, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+    </div>
+    </p>
+<% end %>
+</div>

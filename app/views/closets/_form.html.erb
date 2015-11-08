@@ -1,0 +1,30 @@
+<%= form_for(@closet) do |f| %>
+  <% if @closet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@closet.errors.count, "error") %> prohibited this closet from being saved:</h2>
+
+      <ul>
+      <% @closet.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="panel-body">
+  <div class="field">
+    <%= f.label "Clothing Item" %><br>
+    <%= f.text_field :thing %>
+  </div>
+  <div class="field">
+    <%= f.label "Item Image" %><br>
+    <%= f.file_field :avatar %>
+  </div>
+  <div class="field cant-see-me">
+    <%= f.number_field :user_id, value: current_user.id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  </div>
+<% end %>

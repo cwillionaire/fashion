@@ -1,0 +1,16 @@
+<div class="container">
+<div class="row">
+<% current_user.closets.each do |closet| %>
+  <div class="col-md-6">
+    <div class="panel-body">
+    <%= link_to closet.thing, closet %>
+    <p><%= image_tag closet.avatar.url(:medium) %></p>
+    <p> Submitted by: <strong><%= closet.user.username %></strong></p>
+    <p><%= link_to 'Edit', edit_closet_path(closet) %> |
+    <%= link_to 'Destroy', closet, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </p>
+  </div>
+  <% end %>
+  </div>
+</div>
+</div>
