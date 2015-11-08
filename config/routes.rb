@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :comments
   resources :closets
+  get 'closets' => 'fashion#closet'
   
   get 'your_closet' => 'closets#your_closet'
   
